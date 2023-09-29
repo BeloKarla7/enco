@@ -51,15 +51,8 @@ void inserirNovaConta() {
     }
 }
 
-// Função para encontrar uma conta por número usando busca binária e retornar o índice
-int buscarContaPorNumero(int numero) {
-    // Faz uma cópia da matriz de contas
-    struct conta copiaContas[numContas];
-    for (int i = 0; i < numContas; i++) {
-        copiaContas[i] = contas[i];
-    }
-
-    // Ordena a cópia das contas com base no número da conta usando Bubble Sort
+// Função para ordenar uma cópia da matriz de contas com base no número da conta usando Bubble Sort
+void ordenarContas(struct conta* copiaContas) {
     for (int i = 0; i < numContas - 1; i++) {
         for (int j = 0; j < numContas - i - 1; j++) {
             if (copiaContas[j].numeroConta > copiaContas[j + 1].numeroConta) {
@@ -70,8 +63,10 @@ int buscarContaPorNumero(int numero) {
             }
         }
     }
+}
 
-    // Realiza a busca binária na matriz ordenada
+// Função para encontrar uma conta por número usando busca binária e retornar o índice
+int buscarContaPorNumero(int numero, struct conta* copiaContas) {
     int esquerda = 0;
     int direita = numContas - 1;
     while (esquerda <= direita) {
@@ -91,24 +86,29 @@ int buscarContaPorNumero(int numero) {
 }
 
 // Método para consultar uma conta por número
-
 void consultarConta() {
+    // Faz uma cópia da matriz de contas
+    struct conta copiaContas[numContas];
+    for (int i = 0; i < numContas; i++) {
+        copiaContas[i] = contas[i];
+    }
+
+    // Ordena a cópia das contas com base no número da conta
+    ordenarContas(copiaContas);
 
     int numero;
-
     printf("Digite o número da conta que deseja consultar: ");
     scanf("%d", &numero);
 
-    int indice = buscarContaPorNumero(numero);
+    int indice = buscarContaPorNumero(numero, copiaContas);
 
     if (indice != -1) {
-        printf("\nIndice: %d\n", indice);
         printf("Conta encontrada:\n");
-        printf("Número da Conta: %d\n", contas[indice].numeroConta);
-        printf("Agência: %d\n", contas[indice].agencia);
-        printf("Tipo de Conta: %d\n", contas[indice].tipoConta);
-        printf("CPF do Cliente: %s\n", contas[indice].cpfCliente);
-        printf("Saldo: %.2lf\n", contas[indice].saldo);
+        printf("Número da Conta: %d\n", copiaContas[indice].numeroConta);
+        printf("Agência: %d\n", copiaContas[indice].agencia);
+        printf("Tipo de Conta: %d\n", copiaContas[indice].tipoConta);
+        printf("CPF do Cliente: %s\n", copiaContas[indice].cpfCliente);
+        printf("Saldo: %.2lf\n", copiaContas[indice].saldo);
     } else {
         printf("Conta não encontrada.\n");
     }
