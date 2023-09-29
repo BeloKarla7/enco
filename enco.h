@@ -1,7 +1,7 @@
 
 // Definição da estrutura de conta bancária
 
-#define numContas 2
+#define numContas 15
 
 struct conta {
     int ativa;
