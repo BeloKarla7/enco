@@ -26,6 +26,8 @@ void inserirNovaConta() {
     int indice = encontrarProximoIndiceDisponivel();
     
     if (indice != -1) { // Se houver um índice disponível
+	printf("\nIndice: %d\n", indice);
+
         printf("Digite o número da conta: ");
         scanf("%d", &contas[indice].numeroConta);
         
@@ -100,6 +102,7 @@ void consultarConta() {
     int indice = buscarContaPorNumero(numero);
 
     if (indice != -1) {
+        printf("\nIndice: %d\n", indice);
         printf("Conta encontrada:\n");
         printf("Número da Conta: %d\n", contas[indice].numeroConta);
         printf("Agência: %d\n", contas[indice].agencia);
