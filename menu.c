@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "conta.h"
+
 void menu1() {
   int opc;
 
@@ -16,9 +18,11 @@ void menu1() {
 
     switch (opc) {
       case 1:
-        printf("Opcao 1\n");
+        inserirNovaConta();
+        break;
       case 2:
-        printf("Opcao 1\n");
+        consultarConta();
+        break;
       case 3:
         break;
       default:

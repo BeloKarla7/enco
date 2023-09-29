@@ -1,7 +1,9 @@
 
 // Definição da estrutura de conta bancária
 
-struct _conta {
+#define numContas 2
+
+struct conta {
     int ativa;
     int numeroConta;
     int agencia;
@@ -10,8 +12,4 @@ struct _conta {
     double saldo;
 };
 
-typedef struct _conta *conta;
-
-int numContas = 15;
-
-conta contas;
+struct conta contas[numContas];
